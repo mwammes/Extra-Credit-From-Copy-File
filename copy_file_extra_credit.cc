@@ -17,8 +17,43 @@ using namespace std;
 string getInFileName ();
 string getOutFileName ();
 void copy (ifstream &inStream, ofstream &outStream);
+//************************************************************
+// Function: getInFileName ()
+//
+// Purpose: Have user enter input file name
+//
+// Parameters: 
+//
+// Pre Conditions: file name user enters is a valid string
+//
+// Post Conditions: returns the input file name string
+//************************************************************
+// Function: getOutFileName ()
+//
+// Purpose: Have user enter output file name
+//
+// Parameters: 
+//
+// Pre Conditions: file name user enters is a valid string
+//
+// Post Conditions: returns the output file name string
+//************************************************************
+// Function: copy (ifstream &inStream, ofstream &outStream)
+//
+// Purpose: Copy the contents from inStream to outStream
+//
+// Parameters: &inStream - reads and operates on file entered
+//             &outStream - creates and modifies file entered
+//
+// Pre Conditions: &inStream and &outStream are files that can be
+//                 opened and operated on
+//
+// Post Conditions: Creates the outStream file
+//************************************************************
+
 
 int main(int argc, char const *argv[]) {
+//Initialization  
     ifstream inStream;
     ofstream outStream;
     string inFileName;
@@ -26,24 +61,25 @@ int main(int argc, char const *argv[]) {
 
     inFileName = getInFileName ();
     inStream.open(inFileName.c_str());
-        if (inStream.fail()){
+        if (inStream.fail()){ // For errors opening
             cout << "Error: File name " << inFileName << " does not exist" << endl;
             exit (1);
         }
     outFileName = getOutFileName ();
     outStream.open(outFileName.c_str());
-        if (outStream.fail()){
+        if (outStream.fail()){ //For errors opening
             cout << "Error: File name " << outFileName << " does not exist" << endl;
             exit (1);
         }
     copy (inStream, outStream);
 
-    inStream.close();
+    inStream.close(); //always close your files
     outStream.close();
 
     return 0;
 }// main
 
+//Functions
     // Get the Input File Name
     string getInFileName (){
         ifstream inStream;
